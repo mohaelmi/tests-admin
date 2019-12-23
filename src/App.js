@@ -11,7 +11,7 @@ import { Dashboard }  from './component/dashboard';
 const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 const App = () => (
     <Admin  dashboard={Dashboard}  dataProvider={dataProvider}>
-      <Resource name="users" list={UserList}  icon = { UserIcon } />
+      {/* <Resource name="users" list={UserList}  icon = { UserIcon } /> */}
       <Resource name="posts" list={PostList}  edit={ PostEdit } create = {PostCreate} icon = { PostIcon } />
     </Admin>
 );
