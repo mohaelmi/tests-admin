@@ -1,9 +1,9 @@
 import React from 'react';
-import { List, Edit, Datagrid, TextField, EmailField, EditButton, TextInput, SimpleForm } from 'react-admin';
-import Textfield from '@material-ui/core/TextField';
+import { List, Edit, Create, Datagrid, TextField, EmailField, EditButton, TextInput, SimpleForm, SelectInput, Filter, required, ReferenceInput } from 'react-admin';
+// import Textfield from '@material-ui/core/TextField';
 
 export const UserList = props => (  
-    <List {...props}>
+    <List  filters = { <UserFilter /> } {...props}>
         <Datagrid>
             <TextField source="id" />
             <TextField source="name" />
@@ -35,24 +35,25 @@ export const UserEdit = props => (
 );
 
 
-// export const UserCreate = props => (
-//     <Create {...props}>
-//         <SimpleForm>
-//             <ReferenceInput source="userId" reference="users">
-//                 <SelectInput optionText="name" />
-//             </ReferenceInput>
-//             <TextInput source="title" />
-//             <TextInput multiline source="body" />
-//         </SimpleForm>
-//     </Create>
-// );
+export const CreateUser = props => (
+    <Create {...props}>
+        <SimpleForm>
+            <TextInput  disabled source="id" />
+            <TextInput source="name" validate ={ required() } />
+            <TextInput source="username" />
+            <TextInput source="email" />
+            <TextInput source="address.street" />
+            <TextInput source="phone" />
+            <TextInput source="website" />
+            <TextInput source="company.name" />
+        </SimpleForm>
+    </Create>
+);
 
 
-// const PostFilter = (props) => (
-//     <Filter {...props}>
-//         <TextInput label="Search" source="q" alwaysOn />
-//         <ReferenceInput label="User" source="userId" reference="users" allowEmpty>
-//             <SelectInput optionText="name" />
-//         </ReferenceInput>
-//     </Filter>
-// );
+const UserFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search" source="q" alwaysOn />
+        
+    </Filter>
+);
